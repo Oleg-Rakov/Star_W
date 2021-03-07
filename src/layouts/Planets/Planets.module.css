@@ -13,3 +13,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+.buttonContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

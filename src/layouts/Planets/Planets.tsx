@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
+import { useHistory } from 'react-router';
 import { Spin, Button } from 'antd';
 import Card from '../../components/Card/Card';
 
@@ -8,44 +9,21 @@ import styles from './Planets.module.css';
 
 const Planets: FC<IPlanets> = (props) => {
   const {
-    pageCounter = 0,
-    setPageCounter,
+    planets,
+    getMorePlanets,
+    isPlanetsLoaded,
   } = props;
 
-  const [planets, setPlanets] = useState([{
-    name: '',
-    url: '',
-    climate: '',
-    population: '',
-  }]);
-  const [isPlanetsLoaded, setIsPlanetsLoaded] = useState(false);
+  const history = useHistory();
 
-  async function getPlanets() {
-    try {
-      setIsPlanetsLoaded(false);
-      const response = await fetch(`http://swapi.dev/api/planets/?page=${pageCounter + 1}`);
-
-      if (response.ok) {
-        const { results } = await response.json();
-        setPlanets(results);
-        setIsPlanetsLoaded(true);
-      }
-    } catch (err) {
-      console.error(err);
-      setIsPlanetsLoaded(true);
-    }
-  }
-
-  useEffect(() => {
-    getPlanets();
-  }, []);
-
-  console.log({
-    pageCounter,
-    setPageCounter,
-  });
-
-  console.log('planet', planets);
+  const navigateToPlanetDetails = (url: string | undefined, pathname: string) => {
+    history.push({
+      pathname,
+      state: {
+        url,
+      },
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -55,8 +33,7 @@ const Planets: FC<IPlanets> = (props) => {
             <div className={styles.listContainer}>
               {planets.map((planet) => (
                 <Card
-                      // onClick={() => navigateToPlanetDetails(planet.url, `/planet/${planet.name}`)}
-                  onClick={() => {}}
+                  onClick={() => navigateToPlanetDetails(planet.url, `/planet/${planet.name}`)}
                   key={planet.name}
                   name={planet.name}
                   climate={planet.climate}
@@ -67,12 +44,15 @@ const Planets: FC<IPlanets> = (props) => {
           )
           : <Spin />
       }
-      <Button
-        type="primary"
-        // loading={!isPlanetsLoaded}
-      >
-        Load more
-      </Button>
+      <div className={styles.buttonContainer}>
+        <Button
+          onClick={getMorePlanets}
+          type="primary"
+            // loading={!isPlanetsLoaded}
+        >
+          Load more
+        </Button>
+      </div>
     </div>
   );
 };
