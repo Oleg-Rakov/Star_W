@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Spin } from 'antd';
+import { Spin, Button } from 'antd';
+import Card from '../../components/Card/Card';
+
 import { IPlanets } from './IPlanets';
 
 import styles from './Planets.module.css';
@@ -10,7 +12,12 @@ const Planets: FC<IPlanets> = (props) => {
     setPageCounter,
   } = props;
 
-  const [planet, setPlanets] = useState([]);
+  const [planets, setPlanets] = useState([{
+    name: '',
+    url: '',
+    climate: '',
+    population: '',
+  }]);
   const [isPlanetsLoaded, setIsPlanetsLoaded] = useState(false);
 
   async function getPlanets() {
@@ -38,17 +45,34 @@ const Planets: FC<IPlanets> = (props) => {
     setPageCounter,
   });
 
-  console.log('planet', planet);
+  console.log('planet', planets);
 
   return (
     <div className={styles.container}>
       {
         isPlanetsLoaded
           ? (
-            <div>Content</div>
+            <div className={styles.listContainer}>
+              {planets.map((planet) => (
+                <Card
+                      // onClick={() => navigateToPlanetDetails(planet.url, `/planet/${planet.name}`)}
+                  onClick={() => {}}
+                  key={planet.name}
+                  name={planet.name}
+                  climate={planet.climate}
+                  population={planet.population}
+                />
+              ))}
+            </div>
           )
           : <Spin />
       }
+      <Button
+        type="primary"
+        // loading={!isPlanetsLoaded}
+      >
+        Load more
+      </Button>
     </div>
   );
 };

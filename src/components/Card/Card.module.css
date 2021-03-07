@@ -1,0 +1,31 @@
+.container {
+    width: 300px;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    border: 1px solid #1890ff;
+    cursor: pointer;
+}
+
+.container:hover {
+    -webkit-box-shadow: 1px 0px 15px 6px rgba(24, 144, 255, 0.29);
+    box-shadow: 1px 0px 15px 6px rgba(24, 144, 255, 0.29);
+}
+
+.titleContainer {
+    width: 100%;
+    text-align: center;
+    vertical-align: center;
+    height: 40px;
+    font-size: 24px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5px 5px 5px 30px;
+    font-size: 14px;
+}
