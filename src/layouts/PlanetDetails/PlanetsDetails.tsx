@@ -78,7 +78,6 @@ const PlanetsDetails = () => {
     getPlanetsAndResidents();
   }, []);
 
-
   return (
     <div className={styles.container}>
       {
