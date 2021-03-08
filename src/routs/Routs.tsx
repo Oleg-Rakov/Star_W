@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Planets from '../layouts/Planets/Planets';
 import PlanetsDetails from '../layouts/PlanetDetails/PlanetsDetails';
 import Footer from '../components/Footer/Footer';
@@ -20,7 +20,7 @@ const Routs = () => {
   async function getPlanets() {
     try {
       setIsPlanetsLoaded(false);
-      const response = await fetch(`https://swapi.dev/api/planets/?page=${pageCounter + 1}`);
+      const response = await fetch(`http://swapi.dev/api/planets/?page=${pageCounter + 1}`);
 
       if (response.ok) {
         const { results } = await response.json();
@@ -36,7 +36,7 @@ const Routs = () => {
 
   async function getMorePlanets() {
     try {
-      const response = await fetch(`https://swapi.dev/api/planets/?page=${pageCounter + 1}`);
+      const response = await fetch(`http://swapi.dev/api/planets/?page=${pageCounter + 1}`);
 
       if (response.status === 404) {
         message.error('Sorry I cannot load more pages');
@@ -57,7 +57,7 @@ const Routs = () => {
   }, []);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Footer pageCounter={pageCounter} />
       <Switch>
         <Route
@@ -73,7 +73,7 @@ const Routs = () => {
         />
         <Route exact path="/planet/:name" component={PlanetsDetails} />
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
