@@ -147,6 +147,7 @@ const PlanetsDetails = () => {
 
                       return (
                         <Dropdown
+                          key={resident.name}
                           overlay={menu}
                           placement="bottomCenter"
                           arrow
