@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useHistory } from 'react-router';
 import { Spin, Button } from 'antd';
 import Card from '../../components/Card/Card';
+import yoda from './img/yoo.png';
 
 import { IPlanets } from './IPlanets';
 
@@ -27,6 +28,15 @@ const Planets: FC<IPlanets> = (props) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.yodaContainer}>
+        <img
+          src={yoda}
+          alt="master"
+        />
+        <div className={styles.quote}>
+          “The dark side clouds everything. Impossible to see the light, the future is.” – Yoda
+        </div>
+      </div>
       {
         isPlanetsLoaded
           ? (
