@@ -40,6 +40,7 @@ const Routs = () => {
 
       if (response.ok) {
         const { results } = await response.json();
+        console.log('results', results);
         setPlanets([...planets, ...results]);
         setPageCounter(pageCounter + 1);
       }

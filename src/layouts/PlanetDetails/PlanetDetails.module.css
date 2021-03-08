@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 20px;
+    text-align: center;
+}
+
+.info {
+    font-size: 14px;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.residentsContainer {
+    margin-top: 20px;
+    width: 500px;
+    max-width: 500px;
+    height: auto;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
