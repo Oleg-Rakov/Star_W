@@ -43,8 +43,6 @@ const PlanetsDetails = () => {
         );
       }
 
-      console.log('residents', residents);
-
       const details = {
         name: planet.name,
         rotation_period: planet.rotation_period,
