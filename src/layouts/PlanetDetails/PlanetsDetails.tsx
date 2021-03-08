@@ -28,6 +28,7 @@ const PlanetsDetails = () => {
     }],
   });
   const [isDetailsLoaded, setIsDetailsLoaded] = useState(false);
+  const [isResidentsExists, setIsResidentsExists] = useState(true);
   const location = useLocation<IUseLocation>();
   const url = location.state?.url;
 
@@ -42,6 +43,8 @@ const PlanetsDetails = () => {
         );
       }
 
+      console.log('residents', residents);
+
       const details = {
         name: planet.name,
         rotation_period: planet.rotation_period,
@@ -55,6 +58,9 @@ const PlanetsDetails = () => {
 
       setPlanetDetails(details);
       setIsDetailsLoaded(true);
+      if (residents.length === 0) {
+        setIsResidentsExists(false);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -118,37 +124,41 @@ const PlanetsDetails = () => {
                 {planetDetails.population}
               </div>
               <div className={styles.residentsContainer}>
-                {planetDetails.residents.map((resident) => {
-                  const menu = (
-                    <Menu>
-                      <Menu.Item>
-                        gender:
-                        {' '}
-                        {resident.gender}
-                      </Menu.Item>
-                      <Menu.Item>
-                        height:
-                        {' '}
-                        {resident.height}
-                      </Menu.Item>
-                      <Menu.Item>
-                        mass:
-                        {' '}
-                        {resident.mass}
-                      </Menu.Item>
-                    </Menu>
-                  );
+                {
+                  isResidentsExists
+                    ? planetDetails.residents.map((resident) => {
+                      const menu = (
+                        <Menu>
+                          <Menu.Item>
+                            gender:
+                            {' '}
+                            {resident.gender}
+                          </Menu.Item>
+                          <Menu.Item>
+                            height:
+                            {' '}
+                            {resident.height}
+                          </Menu.Item>
+                          <Menu.Item>
+                            mass:
+                            {' '}
+                            {resident.mass}
+                          </Menu.Item>
+                        </Menu>
+                      );
 
-                  return (
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      arrow
-                    >
-                      <Button>{resident.name}</Button>
-                    </Dropdown>
-                  );
-                })}
+                      return (
+                        <Dropdown
+                          overlay={menu}
+                          placement="bottomCenter"
+                          arrow
+                        >
+                          <Button>{resident.name}</Button>
+                        </Dropdown>
+                      );
+                    })
+                    : (<div>No Residents in this planet</div>)
+                }
               </div>
             </div>
           )
