@@ -12,13 +12,6 @@ const Card: FC<ICard> = (props) => {
     url,
   } = props;
 
-  console.log({
-    name,
-    climate,
-    population,
-    onClick,
-    url,
-  });
 
   return (
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/interactive-supports-focus

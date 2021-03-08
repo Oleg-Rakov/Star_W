@@ -7,7 +7,6 @@ const Footer: FC<IFooter> = (props) => {
   const {
     pageCounter,
   } = props;
-  console.log('pageCounter', pageCounter);
   return (
     <div className={styles.container}>
       Pages:

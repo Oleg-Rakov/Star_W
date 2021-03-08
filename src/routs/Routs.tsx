@@ -42,21 +42,16 @@ const Routs = () => {
         message.error('Sorry I cannot load more pages');
       } else if (response.ok) {
         const { results } = await response.json();
-        if (!results) {
-          console.log('no results');
-        }
         setPlanets([...planets, ...results]);
         setPageCounter(pageCounter + 1);
       }
     } catch (err) {
-      console.log('here');
       console.error(err);
     }
   }
 
   useEffect(() => {
     if (planets.length < 2) {
-      console.log('(planets.length', planets.length);
       getPlanets();
     }
   }, []);
